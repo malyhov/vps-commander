@@ -29,7 +29,7 @@
       </li>
     </ul>
   </div>
-
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     var app = new Vue({
       el: '#app',
@@ -37,7 +37,12 @@
         greeting: 'Welcome to your Vue.js app!',
         docsURL: 'http://vuejs.org/guide/',
         discordURL: 'https://chat.vuejs.org',
-        forumURL: 'http://forum.vuejs.org/'
+        forumURL: 'http://forum.vuejs.org/',
+        result: []
+      },
+      mounted() {
+        axios.get("http://localhost:3000/api/vps")
+          .then(response => {this.results = response.data.results})
       },
       methods: {
         humanizeURL: function (url) {
