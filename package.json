@@ -1,0 +1,15 @@
+{
+  "name": "vps-commander",
+  "version": "1.0.0",
+  "description": "apt install pip python-virtualenv virtualenv -p python3 dest_dir cd dest_dir source bin/activate git clone cd py-sipp pip install -r requirements nano dbconfig.py Указать пароль для доступа к бд в виде строки db_password = 'password'",
+  "main": "vps-commander.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "node-env-file": "^0.1.8"
+  }
+}
