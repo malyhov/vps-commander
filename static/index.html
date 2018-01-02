@@ -6,50 +6,24 @@
 </head>
 <body>
   <div id="app">
-    <img src="https://vuejs.org/images/logo.png" alt="Vue logo">
-    <h1>{{ greeting }}</h1>
-    <ul>
-      <li>
-        To learn more about Vue, visit
-        <a :href="docsURL" target="_blank">
-          {{ humanizeURL(docsURL) }}
-        </a>
-      </li>
-      <li>
-        For live help with simple questions, check out
-        <a :href="discordURL" target="_blank">
-          the Discord chat
-        </a>
-      </li>
-      <li>
-        For more complex questions, post to
-        <a :href="forumURL" target="_blank">
-          the forum
-        </a>
-      </li>
-    </ul>
+    <h1>VPS Commander</h1>
+    <p>{{vps}}</p>
   </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
-    var app = new Vue({
+    new Vue({
       el: '#app',
       data: {
-        greeting: 'Welcome to your Vue.js app!',
-        docsURL: 'http://vuejs.org/guide/',
-        discordURL: 'https://chat.vuejs.org',
-        forumURL: 'http://forum.vuejs.org/',
-        result: []
+        vps: 'loading...'
       },
-      mounted() {
-        axios.get("http://localhost:3000/api/vps")
-          .then(response => {this.results = response.data.results})
-      },
-      methods: {
-        humanizeURL: function (url) {
-          return url
-            .replace(/^https?:\/\//, '')
-            .replace(/\/$/, '')
-        }
+      created() {
+        axios.get('http://localhost:3000/api/vps')
+          .then(response => {
+            this.vps = response.data
+          })
+          .catch(error => {
+            this.vps = 'There wes an error: ' + error.message
+          })
       }
     })
   </script>
