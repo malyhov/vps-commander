@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>VPS Commander</h1>
+    <p>{{vps}}</p>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        vps: 'loading...'
+      },
+      created() {
+        axios.get('http://localhost:3000/api/vps')
+          .then(response => {
+            this.vps = response.data
+          })
+          .catch(error => {
+            this.vps = 'There wes an error: ' + error.message
+          })
+      }
+    })
+  </script>
+</body>
+</html>

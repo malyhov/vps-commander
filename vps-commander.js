@@ -6,6 +6,7 @@ env(__dirname + '/.env');
 
 
 app.set('port', process.env.PORT || 3000);
+app.use('/static', express.static(__dirname + '/static'));
 app.use(require('body-parser')());
 
 // set 'showTests' context property if the querystring contains test=1
